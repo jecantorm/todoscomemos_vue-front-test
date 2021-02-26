@@ -3,42 +3,48 @@
     <h1> Rick and Morty Characters </h1>
     <h2> Search a character </h2>
     <el-row>
-      <form class="search-form" @submit="onSubmit">
-        <el-col :span="4">
-          <label for="name">Name: </label>
-          <input id="name" v-model="ch_name" placeholder="Enter Name">
-        </el-col>
-        <el-col :span="4">
-          <label for="status">Status: </label>
-          <select id="status" v-model="ch_status">
-            <option>alive</option>
-            <option>death</option>
-            <option>unknown</option>
-          </select>
-        </el-col>
-        <el-col :span="4">
-          <label for="species">Species: </label>
-          <input id="species" v-model="ch_species" placeholder="Enter Species">
-        </el-col>
-        <el-col :span="4">
-          <label for="type">Type: </label>
-          <input id="type" v-model="ch_type" placeholder="Enter Type">
-        </el-col>
-        <el-col :span="4">
-          <label for="gender">Gender: </label>
-          <select id="gender" v-model="ch_gender">
-            <option>female</option>
-            <option>male</option>
-            <option>genderless</option>
-            <option>unknown</option>
-          </select>
-        </el-col>
-        <el-col :span="4">
-          <button type="submit">
+      <el-form :inline="true" class="search-form">
+          <el-form-item label="Name">
+          <el-input v-model="ch_name" placeholder="Enter Name"></el-input>
+          </el-form-item>
+
+          <!--el-form-item label="Status">
+          <el-select v-model="ch_status" placeholder="Select Status">
+            <el-option>alive</el-option>
+            <el-option>death</el-option>
+            <el-option>unknown</el-option>
+          </el-select>
+          </el-form-item-->
+          <el-form-item label="Status">
+          <el-input v-model="ch_status" placeholder="Options:[alive,dead,unknown]"></el-input>
+          </el-form-item>
+         
+        
+          <el-form-item label="Species">
+          <el-input v-model="ch_species" placeholder="Enter Species"></el-input>
+          </el-form-item>
+        
+          <el-form-item label="Type">
+          <el-input v-model="ch_type" placeholder="Enter Type"></el-input>
+          </el-form-item>
+        
+          <!--el-form-item label="Gender">
+          <el-select v-model="ch_gender" placeholder="Select Gender">
+            <el-option>female</el-option>
+            <el-option>male</el-option>
+            <el-option>genderless</el-option>
+            <el-option>unknown</el-option>
+          </el-select>
+          </el-form-item-->
+
+          <el-form-item label="Gender">
+            <el-input v-model="ch_gender" placeholder="Options: [female,male,genderless,unknown]"></el-input>
+          </el-form-item>
+        
+          <el-button type="primary" @click="onSubmit">
             Search
-          </button>
-        </el-col>
-      </form>
+          </el-button>
+      </el-form>
     </el-row>
     <h2> List of characters </h2>
     <section v-if="errored">

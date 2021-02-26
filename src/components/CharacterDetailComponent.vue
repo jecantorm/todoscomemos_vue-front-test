@@ -12,7 +12,7 @@
         </el-col>
         <el-col :span="12">
           <h3>Created</h3>
-          <p>{{ info.created }}</p>
+          <p>{{ new Date(info.created).toDateString() }}</p>
 
           <h3>Species</h3>
           <p>{{ info.species }}</p>
