@@ -48,7 +48,8 @@
     </el-row>
     <h2> List of characters </h2>
     <section v-if="errored">
-      <p>There's nothing here</p>
+      <p>No matches found. Try to search again.</p>
+      <el-button type="info" plain @click="refresh">Retry</el-button>
     </section>
     <section v-else>
       <div v-if="loading">Loading...</div>
@@ -98,6 +99,11 @@ export default class Characters extends Vue {
     const stringParameter = this.apiurl + "/?" + "name=" + this.ch_name + "&status=" + this.ch_status + "&species=" + this.ch_species + "&type=" + this.ch_type + "&gender=" + this.ch_gender;
     this.doAPIPetition(stringParameter)
     
+  }
+
+  refresh(){
+    console.log("refresh")
+    this.errored = false
   }
 
   onCardClicked(pid: any, pname: any){
