@@ -49,7 +49,7 @@
     
       <el-row v-else>
         <el-col :span="6" v-for="character in info.results" :key="character.id" class="character">
-          <el-card :body-style="{ padding: '0px' }">
+          <el-card :body-style="{ padding: '0px' }" @click.native="onCardClicked(character.id,character.name)">
             <img :src="character.image"/>
             <div style="padding: 14px;">
               <span>
@@ -89,10 +89,15 @@ export default class Characters extends Vue {
 
   onSubmit(){
     console.log("onSubmit")
-
     const stringParameter = this.apiurl + "/?" + "name=" + this.ch_name + "&status=" + this.ch_status + "&species=" + this.ch_species + "&type=" + this.ch_type + "&gender=" + this.ch_gender;
     this.doAPIPetition(stringParameter)
     
+  }
+
+  onCardClicked(pid: any, pname: any){
+    console.log(pid)
+    const routeData = this.$router.resolve({name: "Character", params: {id: pid, name: pname} })
+    window.open(routeData.href, '_blank')
   }
 
   doAPIPetition(param: string){
